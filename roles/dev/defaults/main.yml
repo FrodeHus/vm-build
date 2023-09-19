@@ -21,4 +21,4 @@ golang_download_dir: "{{ x_ansible_download_dir | default(ansible_facts.env.HOME
 golang_redis_filename: 'go{{ golang_version }}.linux-{{ golang_architecture }}.tar.gz'
 
 # Location for GOPATH environment variable
-golang_gopath:
+golang_gopath: '{{ ansible_env.HOME }}/go'

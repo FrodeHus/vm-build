@@ -1,7 +1,7 @@
 - hosts: pwnbox
   roles:
+   - dev
    - workstation
    - cloud
-   - dev
    - penetration-testing
  

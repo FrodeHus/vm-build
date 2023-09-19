@@ -1,4 +1,3 @@
-# code: language=ansible
 ---
 - name: Uninstall Golang installed by package manager
   ansible.builtin.apt:
@@ -75,20 +74,29 @@
     mode: "u=rw,go=r"
 
 - name: Determine shell config file
-  set_fact:
-    rc_file: "{% if ansible_env.SHELL=='/bin/bash' %}.bashrc{% else %}.zshrc{% endif %}"
+  ansible.builtin.set_fact:
+    rc_file: "{% if ansible_env.SHELL == '/bin/bash' %}.bashrc{% else %}.zshrc{% endif %}"
 
-- name: "Ensure Go path is in {{ rc_file }}"
-  blockinfile:
-    dest: "{{ ansible_env.HOME }}/{{ rc_file }}"
-    block: |
-      export GOROOT='{{ golang_install_dir }}'
-      export PATH=$GOROOT/bin:$PATH
-    marker: "# {mark} ANSIBLE MANAGED BLOCK - golang"
-    insertbefore: EOF
-    
+# - name: "Ensure Go path is in {{ rc_file }}"
+#   blockinfile:
+#     dest: "{{ ansible_env.HOME }}/{{ rc_file }}"
+#     block: |
+#       export GOROOT='{{ golang_install_dir }}'
+#       export GOPATH='{{ golang_gopath }}'
+#       export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+#     marker: "# {mark} ANSIBLE MANAGED BLOCK - golang"
+#     insertbefore: EOF
+
+- name: Create a symbolic link for go
+  ansible.builtin.file:
+    src: "{{ golang_install_dir }}/bin/go"
+    dest: /usr/local/bin/go
+    owner: root
+    group: root
+    state: link
+  become: true
+
 - name: "Reload {{ rc_file }}"
-  ansible.builtin.shell: 
+  ansible.builtin.shell:
     cmd: "source {{ ansible_env.HOME }}/{{ rc_file }}"
     executable: "{{ ansible_env.SHELL }}"
-  when: ansible_check_mode|bool == false
