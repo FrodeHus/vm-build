@@ -55,7 +55,7 @@
     ansible.builtin.get_url:
       url: https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.10.1.1&type=Linux
       dest: /tmp/burpsuite_pro.sh
-      checksum: "af706e34a1730c4849bada1b81d392ada64ae2d94cdc9ea336d938d6ce2087e9"
+      checksum: "sha256:af706e34a1730c4849bada1b81d392ada64ae2d94cdc9ea336d938d6ce2087e9"
       mode: '0744'
   - name: Install Burp Suite Pro
     shell: /tmp/burpsuite_pro.sh -q -dir /opt/burpsuite_pro
