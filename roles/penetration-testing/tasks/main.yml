@@ -10,3 +10,8 @@
 
 - ansible.builtin.import_tasks: "burp.yml"
 - ansible.builtin.import_tasks: "firefox.yml"
+- ansible.builtin.import_tasks: "go-tools.yml"
+- ansible.builtin.import_tasks: "python-tools.yml"
+- ansible.builtin.import_tasks: "gem-tools.yml"
+- ansible.builtin.import_tasks: "github-repos.yml"
+- ansible.builtin.import_tasks: "kerbrute.yml"
