@@ -58,7 +58,7 @@
       checksum: "af706e34a1730c4849bada1b81d392ada64ae2d94cdc9ea336d938d6ce2087e9"
       mode: '0744'
   - name: Install Burp Suite Pro
-    shell: /tmp/burpsuite_pro.sh --mode unattended --unattendedmodeui none --installlocation /opt/burpsuite_pro
+    shell: /tmp/burpsuite_pro.sh -q -dir /opt/burpsuite_pro
     args:
       creates: /opt/burpsuite_pro
   - name: Cleanup
