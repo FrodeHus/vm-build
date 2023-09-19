@@ -5,6 +5,8 @@
     dest: ~/.tmux/plugins/tpm
 
 - name: "Install packages"
+  become: true
+  become_method: ansible.builtin.sudo
   apt:
     update_cache: true
     name:
