@@ -7,3 +7,6 @@
 - name: Install Parrot-specific packages
   import_tasks: parrot.yml
   when: ansible_facts['os_family']|lower == 'parrot'
+
+- ansible.builtin.import_tasks: "burp.yml"
+- ansible.builtin.import_tasks: "firefox.yml"
