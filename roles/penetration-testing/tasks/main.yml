@@ -11,7 +11,7 @@
     update_cache: true
     name: "{{ extra_packages }}"
 
-# - ansible.builtin.import_tasks: "burp.yml"
+- ansible.builtin.import_tasks: "burp.yml"
 - ansible.builtin.import_tasks: customize-kali.yml
 - ansible.builtin.import_tasks: "firefox.yml"
 - ansible.builtin.import_tasks: "go-tools.yml"
