@@ -1,0 +1,36 @@
+---
+- name: "Check if Keybase CLI is already installed"
+  stat:
+    path: /usr/bin/keybase
+  register: keybase_installed
+
+- name: "Download & Install Keybase"
+  when: not keybase_installed.stat.exists
+  block:
+    - name: "Download Keybase"
+      get_url:
+        url: "https://prerelease.keybase.io/keybase_amd64.deb"
+        dest: "/tmp/keybase_amd64.deb"
+    - name: "Install Keybase"
+      apt:
+        deb: /tmp/keybase_amd64.deb
+        state: present
+    - name: "Remove downloaded Keybase"
+      file:
+        path: "/tmp/keybase_amd64.deb"
+        state: absent
+    - name: "Move Keybase apt GPG key from trusted.gpg to trusted.gpg.d"
+      shell: "{{ item }}"
+      args:
+        creates: "/etc/apt/trusted.gpg.d/keybase.gpg"
+      with_items:
+        - apt-key --keyring /etc/apt/trusted.gpg list | grep keybase -B1 | grep -E "(([ ]{1,2}(([0-9A-F]{4}))){10})" | tr -d " " | xargs apt-key export | gpg --dearmour -o /etc/apt/trusted.gpg.d/keybase.gpg
+        - apt-key --keyring /etc/apt/trusted.gpg list | grep keybase -B1 | grep -E "(([ ]{1,2}(([0-9A-F]{4}))){10})" | KEY=$(tr -d " ") | apt-key --keyring /etc/apt/trusted.gpg del $KEY
+  become: true
+  become_method: sudo
+
+- name: "Run initial Keybase setup"
+  when: not keybase_installed.stat.exists
+  shell: "run_keybase -g"
+  args:
+    creates: "{{ ansible_env.HOME }}/.config/keybase"

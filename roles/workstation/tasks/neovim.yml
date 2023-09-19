@@ -1,0 +1,40 @@
+---
+- name: "Download and install NeoVim"
+  block:
+    - name: "Download latest NeoVim release"
+      get_url:
+        url: "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
+        dest: "/tmp/nvim-linux64.tar.gz"
+    - name: "Install NeoVim"
+      unarchive:
+        src: "/tmp/nvim-linux64.tar.gz"
+        dest: "/opt/"
+        remote_src: true
+        creates: "/opt/nvim-linux64"
+    - name: "Create symlink for nvim"
+      file:
+        src: "/opt/nvim-linux64/bin/nvim"
+        dest: "/usr/local/bin/nvim"
+        state: link
+    - name: "Delete downloaded NeoVim archive"
+      file:
+        path: "/tmp/nvim-linux64.tar.gz"
+        state: absent
+  become: true
+  become_method: sudo
+
+- name: "Configure NeoVim"
+  block:
+    - name: "Install NvChad"
+      git:
+        repo: "https://github.com/NvChad/NvChad.git"
+        dest: "{{ ansible_env.HOME }}/.config/nvim"
+        depth: 1
+    - name: Add NVIM aliases to .bash_aliases
+      blockinfile:
+        dest: "{{ ansible_env.HOME }}/.bash_aliases"
+        block: |
+          alias vim='nvim'
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - nvim_aliases"
+        insertbefore: EOF
+        create: yes

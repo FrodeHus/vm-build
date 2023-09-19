@@ -1,0 +1,37 @@
+---
+- name: Install packages
+  become: true
+  become_method: ansible.builtin.sudo
+  apt:
+    update_cache: true
+    name:
+    - jq
+    - pipx
+    - ntpdate
+    - flameshot
+    - exiftool
+    - ffuf
+    - dnsrecon
+    - feroxbuster
+    - fonts-noto-color-emoji
+    - fonts-cascadia-code
+    - libqt5sensors5
+    - libqt5webkit5
+    - snmp
+    - tnscmd10g
+    - npm
+    - wkhtmltopdf
+    - azure-cli
+    - enum4linux
+    - redis-tools
+    - smbmap
+    - nbtscan
+    - nikto
+    - snmp
+    - sslscan
+    - exploitdb
+    - anonsurf
+    - anonsurf-gtk
+    - anonsurf-cli
+    - seclists
+    - nfs-common
