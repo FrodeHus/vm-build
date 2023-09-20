@@ -1,12 +1,15 @@
 ---
 # tasks file for penetration-testing
-- name: Install Kali-specific packages
-  import_tasks: kali.yml
-  when: ansible_facts['os_family']|lower == 'kali'
+- name: Load distribution configuration
+  include_vars: 
+    file: "../vars/{{ ansible_distribution|lower }}.yml" 
 
-- name: Install Parrot-specific packages
-  import_tasks: parrot.yml
-  when: ansible_facts['os_family']|lower == 'parrot'
+- name: Install distro-specific packages
+  become: true
+  become_method: ansible.builtin.sudo
+  apt:
+    update_cache: true
+    name: "{{ extra_packages }}"
 
 - ansible.builtin.import_tasks: "burp.yml"
 - ansible.builtin.import_tasks: "firefox.yml"

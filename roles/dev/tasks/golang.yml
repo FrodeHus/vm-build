@@ -74,12 +74,19 @@
     group: root
     mode: "u=rw,go=r"
 
-- name: Ensure Go path is part of .bashrc
+- name: Determine shell config file
+  set_fact:
+    rc_file: "{% if ansible_env.SHELL=='/bin/bash' %}.bashrc{% else %}.zshrc{% endif %}"
+
+- name: "Ensure Go path is in {{ rc_file }}"
   blockinfile:
-    dest: "{{ ansible_env.HOME }}/.bashrc"
+    dest: "{{ ansible_env.HOME }}/{{ rc_file }}"
     block: |
       export GOROOT='{{ golang_install_dir }}'
       export PATH=$GOROOT/bin:$PATH
     marker: "# {mark} ANSIBLE MANAGED BLOCK - golang"
-    insertbefore: BOF
-    create: yes
+    insertbefore: EOF
+    
+- name: "Reload {{ rc_file }}"
+  ansible.builtin.shell: ". {{ ansible_env.HOME }}/{{ rc_file }}"
+  when: ansible_check_mode|bool == false

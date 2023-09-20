@@ -15,6 +15,7 @@
         name: "autorecon",
         url: "git+https://github.com/Tib3rius/AutoRecon.git",
       }
+    - { name: "ssh-mitm", url: "git+https://github.com/ssh-mitm/ssh-mitm.git" }
 
 - name: "Install pip tools"
   pip:

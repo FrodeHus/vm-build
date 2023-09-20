@@ -3,5 +3,10 @@
   shell: go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 - name: "install anew"
   shell: go install -v github.com/tomnomnom/anew@latest
+- name: "install subfinder"
+  shell: go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+- name: "install nuclei"
+  shell: go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+
 
 

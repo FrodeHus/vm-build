@@ -9,32 +9,39 @@
   become_method: ansible.builtin.sudo
   apt:
     update_cache: true
-    name:
-      - vim
-      - xclip
-      - curl
-      - tmux
-      - unzip
-      - jq
-      - python3-dev
-      - pipx
-      - ntpdate
-      - nfs-common
-      - gpg
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg-agent
-      - software-properties-common
-      - python3-pip
-      - python3-venv
-      - exiftool
-      - neofetch
-      - mitmproxy
-      - p7zip-full
+    name: "{{ packages }}"
 
-- ansible.builtin.import_tasks: go-tools.yml
+- name: Determine shell config file
+  set_fact:
+    rc_file: "{% if ansible_env.SHELL=='/bin/bash' %}.bashrc{% else %}.zshrc{% endif %}"
+
+- name: "Update paths and aliases is in {{ rc_file }}"
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/{{ rc_file }}"
+    block: |      
+      export PATH={{ ansible_env.HOME }}/.local/bin:$PATH
+      alias vim='nvim'
+      alias gl='git pull'
+      alias gp='git push'
+      alias gs='git status'
+      alias gd='git diff'
+      alias gc='git commit -m'
+      alias gca='git commit -am'
+      alias gco='git checkout'
+      alias gcb='git checkout -b'
+      alias gcm='git checkout main'
+      alias gpsup='git push --set-upstream origin $(git branch --show-current)'
+      alias gpristine='git reset --hard && git clean --force -dfx'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - common paths and aliases"
+    insertbefore: EOF
+    
+- name: "Reload {{ rc_file }}"
+  ansible.builtin.shell: ". {{ ansible_env.HOME }}/{{ rc_file }}"
+  when: ansible_check_mode|bool == false
+
 - ansible.builtin.import_tasks: neovim.yml
 # - ansible.builtin.import_tasks: keybase.yml
 - ansible.builtin.import_tasks: 1password.yml
 - ansible.builtin.import_tasks: docker.yml
+
+

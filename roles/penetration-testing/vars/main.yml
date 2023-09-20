@@ -13,3 +13,21 @@ burpsuite_extras_jars:
 FirefoxPlugins:
   - "foxyproxy-standard"
   - "wappalyzer"
+
+pentest_packages:
+  - ffuf
+  - dnsrecon
+  - enum4linux
+  - redis-tools
+  - smbmap
+  - nbtscan
+  - nikto
+  - snmp
+  - sslscan
+  - exploitdb
+  - seclists
+  - wkhtmltopdf
+  - feroxbuster
+  - nmap
+  - mitmproxy
+  

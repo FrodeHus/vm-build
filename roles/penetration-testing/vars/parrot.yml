@@ -1,0 +1,7 @@
+---
+extra_packages:
+  - exploitdb
+  - anonsurf
+  - anonsurf-gtk
+  - anonsurf-cli
+  - fonts-cascadia-code

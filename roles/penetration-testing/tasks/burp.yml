@@ -49,7 +49,13 @@
     src: "templates/UserConfigCommunity.json.j2"
     dest: "/home/{{ ansible_user_id }}/.BurpSuite/UserConfigCommunity.json"
 
+- name: "Check if Burp Professional is already installed"
+  stat:
+    path: /usr/local/bin/BurpSuitePro
+  register: burppro_installed
+
 - name: Install Burp Professional
+  when: not burppro_installed.stat.exists
   block:
   - name: Download Burp Suite Pro
     ansible.builtin.get_url:
