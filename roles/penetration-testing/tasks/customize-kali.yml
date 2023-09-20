@@ -1,0 +1,20 @@
+---
+- name: Set desktop background
+  block:
+    - name: Copy desktop background
+      copy:
+        src: files/kali-wallpaper.png
+        dest: /usr/share/backgrounds/kali/kali-wallpaper-custom.png
+        owner: root
+        group: root
+        mode: 0644
+      become: true
+      become_method: sudo
+
+    - name: Configure desktop background
+      xfconf:
+        channel: xfce4-desktop
+        property: /backdrop/screen0/monitorrdp0/workspace0/last-image
+        value: /usr/share/backgrounds/kali/kali-wallpaper-custom.png
+        value_type: string
+        state: present
