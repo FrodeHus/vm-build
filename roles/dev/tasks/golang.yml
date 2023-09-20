@@ -88,5 +88,7 @@
     insertbefore: EOF
     
 - name: "Reload {{ rc_file }}"
-  ansible.builtin.shell: ". {{ ansible_env.HOME }}/{{ rc_file }}"
+  ansible.builtin.shell: 
+    cmd: "source {{ ansible_env.HOME }}/{{ rc_file }}"
+    executable: "{{ ansible_env.SHELL }}"
   when: ansible_check_mode|bool == false

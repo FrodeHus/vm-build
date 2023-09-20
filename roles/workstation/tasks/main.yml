@@ -1,4 +1,11 @@
 ---
+- name: "Copying dotfiles"
+  copy:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ ansible_env.HOME }}"
+  with_items:
+    - ".tmux.conf"
+
 - name: "Install Tmux plugins (remember to do Prefix+I to install plugins once Tmux is running)"
   git:
     repo: https://github.com/tmux-plugins/tpm.git
@@ -18,7 +25,7 @@
 - name: "Update paths and aliases is in {{ rc_file }}"
   blockinfile:
     dest: "{{ ansible_env.HOME }}/{{ rc_file }}"
-    block: |      
+    block: |
       export PATH={{ ansible_env.HOME }}/.local/bin:$PATH
       alias vim='nvim'
       alias gl='git pull'
@@ -34,15 +41,16 @@
       alias gpristine='git reset --hard && git clean --force -dfx'
     marker: "# {mark} ANSIBLE MANAGED BLOCK - common paths and aliases"
     insertbefore: EOF
-    
+
 - name: "Reload {{ rc_file }}"
-  ansible.builtin.shell: ". {{ ansible_env.HOME }}/{{ rc_file }}"
+  ansible.builtin.shell:
+    cmd: "source {{ ansible_env.HOME }}/{{ rc_file }}"
+    executable: "{{ ansible_env.SHELL }}"
   when: ansible_check_mode|bool == false
 
 - ansible.builtin.import_tasks: neovim.yml
 # - ansible.builtin.import_tasks: keybase.yml
 - ansible.builtin.import_tasks: 1password.yml
 - ansible.builtin.import_tasks: docker.yml
-- ansible.builtin.import_tasks: go-tools.yml
-
+# - ansible.builtin.import_tasks: go-tools.yml
 

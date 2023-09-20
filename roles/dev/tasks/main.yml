@@ -1,7 +1,7 @@
 ---
 # tasks file for dev
 - ansible.builtin.import_tasks: golang.yml
-- ansible.builtin.import_tasks: dotnet.yml
+# - ansible.builtin.import_tasks: dotnet.yml
 - ansible.builtin.import_tasks: github-client.yml
 - ansible.builtin.import_tasks: github.yml
 - ansible.builtin.import_tasks: nodejs.yml
