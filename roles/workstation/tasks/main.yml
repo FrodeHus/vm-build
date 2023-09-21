@@ -53,4 +53,5 @@
 - ansible.builtin.import_tasks: 1password.yml
 - ansible.builtin.import_tasks: docker.yml
 - ansible.builtin.import_tasks: go-tools.yml
+- ansible.builtin.import_tasks: customize-kali.yml
 
