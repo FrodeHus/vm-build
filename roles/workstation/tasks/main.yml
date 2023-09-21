@@ -53,6 +53,9 @@
 - ansible.builtin.import_tasks: 1password.yml
 - ansible.builtin.import_tasks: docker.yml
 - ansible.builtin.import_tasks: go-tools.yml
-- name: Distribution-specific desktop customization
-  ansible.builtin.import_tasks: "customize-{{ ansible_distribution|lower }}.yml"
-  ignore_errors: true
+- name: Desktop customization (Kali)
+  ansible.builtin.import_tasks: customize-kali.yml
+  when: ansible_distribution == "Kali"
+- name: Desktop customization (Parrot)
+  ansible.builtin.import_tasks: customize-parrot.yml
+  when: ansible_distribution == "Parrot"
