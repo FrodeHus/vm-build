@@ -24,10 +24,9 @@
     - name: Copy JetBrains Nerd Font
       copy:
         src: files/JetBrainsMonoNerdFontMono-Medium.ttf
-        dest: /usr/share/fonts/truetype/jetbrains/JetBrainsMonoNerdFontMono-Medium.ttf
+        dest: /usr/share/fonts/truetype/jetbrains/
         owner: root
         group: root
-        create: true
         mode: 0644
     - name: Update font cache
       ansible.builtin.shell: fc-cache -f -v
