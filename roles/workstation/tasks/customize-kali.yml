@@ -37,6 +37,13 @@
         line: "fontFamily=JetBrainsMono Nerd Font Mono"
         state: present
       become: false
+    - name: Set terminal font size
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.config/qterminal.org/qterminal.ini"
+        regexp: "^fontSize="
+        line: "fontSize=10"
+        state: present
+      become: false
       
   become: true
   become_method: sudo
