@@ -34,7 +34,7 @@
       lineinfile:
         path: "{{ ansible_env.HOME }}/.config/qterminal.org/qterminal.ini"
         regexp: "^fontFamily="
-        line: "fontFamily=JetBrainsMono Nerd Font Mono Bold 13"
+        line: "fontFamily=JetBrainsMono Nerd Font Mono"
         state: present
       become: false
       
