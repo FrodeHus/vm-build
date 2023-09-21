@@ -7,6 +7,7 @@
     - { repo: "https://github.com/Flangvik/SharpCollection", location: "/opt/SharpCollection" }
     - { repo: "https://github.com/AlmondOffSec/PassTheCert", location: "/opt/PassTheCert" }
     - { repo: "https://github.com/tarunkant/Gopherus", location: "/opt/Gopherus" }
+    - { repo: "https://github.com/4ndr34z/shells", location: "/opt/shells" }
     
   become: true
   become_method: sudo
