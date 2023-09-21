@@ -32,10 +32,11 @@
       ansible.builtin.shell: fc-cache -f -v
     - name: Set default terminal font
       lineinfile:
-        path: /etc/xdg/xfce4/terminal/terminalrc
-        regexp: "^FontName="
-        line: "FontName=JetBrainsMono Nerd Font Mono Bold 13"
+        path: "{{ ansible_env.HOME }}/.config/qterminal.org/qterminal.ini"
+        regexp: "^fontFamily="
+        line: "fontFamily=JetBrainsMono Nerd Font Mono Bold 13"
         state: present
+      become: false
       
   become: true
   become_method: sudo
