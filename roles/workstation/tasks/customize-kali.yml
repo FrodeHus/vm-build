@@ -27,6 +27,7 @@
         dest: /usr/share/fonts/truetype/jetbrains/JetBrainsMonoNerdFontMono-Medium.ttf
         owner: root
         group: root
+        create: true
         mode: 0644
     - name: Update font cache
       ansible.builtin.shell: fc-cache -f -v
