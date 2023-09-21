@@ -18,3 +18,17 @@
         value: /usr/share/backgrounds/kali/kali-wallpaper-custom.png
         value_type: string
         state: present
+
+- name: Install JetBrains Nerd Font
+  block:
+    - name: Copy JetBrains Nerd Font
+      copy:
+        src: files/JetBrainsMonoNerdFontMono-Medium.ttf
+        dest: /usr/share/fonts/truetype/jetbrains/JetBrainsMonoNerdFontMono-Medium.ttf
+        owner: root
+        group: root
+        mode: 0644
+    - name: Update font cache
+      ansible.builtin.shell: fc-cache -f -v
+  become: true
+  become_method: sudo
