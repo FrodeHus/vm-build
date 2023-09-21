@@ -30,5 +30,12 @@
         mode: 0644
     - name: Update font cache
       ansible.builtin.shell: fc-cache -f -v
+    - name: Set default terminal font
+      lineinfile:
+        path: /etc/xdg/xfce4/terminal/terminalrc
+        regexp: "^FontName="
+        line: "FontName=JetBrainsMono Nerd Font Mono Bold 13"
+        state: present
+      
   become: true
   become_method: sudo
