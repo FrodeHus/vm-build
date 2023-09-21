@@ -1,1 +1,9 @@
 ---
+- name: Install Jetbrains Mono Nerd Font
+  block:
+    - name: "Copy fonts"
+      copy:
+        src: "files/JetBrainsMonoNerdFontMono-Medium.ttf"
+        dest: "{{ ansible_env.HOME }}/.local/share/fonts/"
+    - name: Update font cache
+      ansible.builtin.shell: fc-cache -f -v
