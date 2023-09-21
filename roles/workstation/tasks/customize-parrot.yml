@@ -7,3 +7,16 @@
         dest: "{{ ansible_env.HOME }}/.local/share/fonts/"
     - name: Update font cache
       ansible.builtin.shell: fc-cache -f -v
+    - name: "Set default terminal font"
+      dconf:
+        key: "{{ item.key }}"
+        value: "{{ item.value }}"
+      loop:
+        - {
+            key: "/org/mate/terminal/profiles/default/font",
+            value: "'JetBrainsMono Nerd Font Mono Bold 13'",
+          }
+        - {
+            key: "/org/mate/terminal/profiles/default/use-system-font",
+            value: false,
+          }
