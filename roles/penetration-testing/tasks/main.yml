@@ -4,6 +4,13 @@
   include_vars: 
     file: "../vars/{{ ansible_distribution|lower }}.yml" 
 
+- name: Install common packages
+  become: true
+  become_method: ansible.builtin.sudo
+  apt:
+    update_cache: true
+    name: "{{ pentest_packages }}"
+
 - name: Install distro-specific packages
   become: true
   become_method: ansible.builtin.sudo
