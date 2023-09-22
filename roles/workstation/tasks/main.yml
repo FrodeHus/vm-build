@@ -26,6 +26,7 @@
   blockinfile:
     dest: "{{ ansible_env.HOME }}/{{ rc_file }}"
     block: |
+      export PATH=$PATH:{{ ansible_env.HOME }}/.local/bin
       alias vim='nvim'
       alias gl='git pull'
       alias gp='git push'

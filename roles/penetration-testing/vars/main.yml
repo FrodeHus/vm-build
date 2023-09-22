@@ -30,4 +30,5 @@ pentest_packages:
   - feroxbuster
   - nmap
   - mitmproxy
+  - dirsearch
   
