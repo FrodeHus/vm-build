@@ -23,6 +23,7 @@
       - "pycryptodome"
       - "name-that-hash"
       - "ludvig"
+      - "git-dumper"
     state: latest
   become: true
   become_method: sudo
