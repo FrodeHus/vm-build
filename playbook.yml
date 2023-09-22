@@ -1,7 +1,22 @@
 - hosts: pwnbox
   roles:
-   - dev
-   - workstation
-   - cloud
-   - penetration-testing
- 
+    - role: dev
+    - role: workstation
+    - role: cloud
+    - role: penetration-testing
+    - role: gantsign.visual-studio-code
+      users:
+        - username: "{{ ansible_user_id }}"
+          visual_studio_code_extensions:
+            - streetsidesoftware.code-spell-checker
+            - ms-python.python
+            - DEVSENSE.phptools-vscode
+            - GitHub.copilot
+            - snyk-security.snyk-vulnerability-scanner
+            - silofy.hackthebox
+            - ms-dotnettools.csharp
+            - josefpihrt-vscode.roslynator
+            - golang.go
+            - shakram02.bash-beautify
+            - ms-python.flake8
+            - infosec-intern.yara
