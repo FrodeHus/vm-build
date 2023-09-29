@@ -5,3 +5,5 @@ extra_packages:
   - cyberchef
   - gobuster
   - payloadsallthethings  
+  - offsec-pen300
+  - flameshot
