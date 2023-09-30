@@ -24,6 +24,7 @@
       - "name-that-hash"
       - "ludvig"
       - "git-dumper"
+      - "frida-tools"
     state: latest
   become: true
   become_method: sudo
