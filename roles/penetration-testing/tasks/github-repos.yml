@@ -9,6 +9,7 @@
     - { repo: "https://github.com/tarunkant/Gopherus", location: "/opt/Gopherus" }
     - { repo: "https://github.com/4ndr34z/shells", location: "/opt/shells" }
     - { repo: "https://github.com/arget13/DDexec", location: "/opt/ddexec" }    
+    - { repo: "https://github.com/mandatoryprogrammer/xsshunter-express", location: "/opt/xsshunter" }
   become: true
   become_method: sudo
 
