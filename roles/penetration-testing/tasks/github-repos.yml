@@ -11,6 +11,7 @@
     - { repo: "https://github.com/arget13/DDexec", location: "/opt/ddexec" }    
     - { repo: "https://github.com/mandatoryprogrammer/xsshunter-express", location: "/opt/xsshunter" }
   become: true
+  ignore_errors: true
   become_method: sudo
 
 - name: Create temporary build directory
@@ -46,6 +47,7 @@
   async: 45
   poll: 0
   become: true
+  ignore_errors: true
   become_method: sudo
 
 - name: Remove temporary build directory
