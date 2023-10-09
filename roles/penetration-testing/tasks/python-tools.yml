@@ -25,6 +25,7 @@
       - "ludvig"
       - "git-dumper"
       - "frida-tools"
+      - "xsstrike"
     state: latest
   become: true
   become_method: sudo
