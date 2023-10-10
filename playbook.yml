@@ -8,7 +8,7 @@
       users:
         - username: "{{ ansible_user_id }}"
           visual_studio_code_extensions:
-            - streetsidesoftware.code-spell-checker
+            - ms-dotnettools.csdevkit
             - ms-python.python
             - DEVSENSE.phptools-vscode
             - GitHub.copilot
@@ -19,4 +19,5 @@
             - golang.go
             - shakram02.bash-beautify
             - ms-python.flake8
+            - ms-python.black-formatter
             - infosec-intern.yara
