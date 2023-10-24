@@ -6,7 +6,7 @@
 - name: "install subfinder"
   shell: go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 - name: "install nuclei"
-  shell: go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+  shell: go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 - name: "install notify"
   shell: go install -v github.com/projectdiscovery/notify/cmd/notify@latest
 
