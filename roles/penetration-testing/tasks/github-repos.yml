@@ -46,6 +46,8 @@
     - { repo: "vinsworldcom/NetCat64", regex: "nc64.exe", location: "/opt/nc64" }
     - { repo: "vinsworldcom/NetCat64", regex: "nc64-32.exe", location: "/opt/nc64" }
     - { repo: "trufflesecurity/trufflehog", regex: "_linux_amd64.tar.gz", location: "/opt/trufflehog" }
+    - { repo: "itm4n/PrintSpoofer", regex: "PrintSpoofer32.exe", location: "/opt/PrintSpoofer" }
+    - { repo: "itm4n/PrintSpoofer", regex: "PrintSpoofer64.exe", location: "/opt/PrintSpoofer" }
   async: 45
   poll: 0
   become: true
