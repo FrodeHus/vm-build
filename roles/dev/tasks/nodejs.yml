@@ -1,7 +1,7 @@
 ---
-- name: "Installing nodejs_18.x repository"
+- name: "Installing nodejs_20.x repository"
   shell:
-    cmd: curl -sL https://deb.nodesource.com/setup_18.x | bash
+    cmd: curl -sL https://deb.nodesource.com/setup_20.x | bash
     creates: /usr/bin/npm
   become: true
   become_method: sudo
