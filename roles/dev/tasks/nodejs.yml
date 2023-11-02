@@ -1,8 +1,15 @@
 ---
-- name: "Installing nodejs_20.x repository"
+- name: "Import Nodesource GPG key"
   shell:
-    cmd: curl -sL https://deb.nodesource.com/setup_20.x | bash
-    creates: /usr/bin/npm
+    cmd: curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+    creates: /etc/apt/keyrings/nodesource.gpg
+  become: true
+  become_method: sudo
+
+- name: "Create repository file for NodeJS"
+  shell:
+    cmd: echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+    creates: /etc/apt/sources.list.d/nodesource.list
   become: true
   become_method: sudo
 
@@ -11,5 +18,6 @@
     name:
       - nodejs
     state: present
+    update_cache: yes
   become: true
   become_method: sudo
