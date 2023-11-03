@@ -12,6 +12,7 @@
     - { repo: "https://github.com/danielbohannon/Invoke-Obfuscation", location: "/opt/Invoke-Obfuscation"}
     - { repo: "https://github.com/mandatoryprogrammer/xsshunter-express", location: "/opt/xsshunter" }
     - { repo: "https://github.com/Kevin-Robertson/Inveigh", location: "/opt/Inveigh" }
+    - { repo: "git clone https://github.com/phra/PEzor.git", location: "/opt/PEzor" }
   become: true
   ignore_errors: true
   become_method: sudo
