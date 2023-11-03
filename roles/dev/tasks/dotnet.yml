@@ -4,5 +4,6 @@
     name:
       - dotnet-sdk-7.0
     state: present
+    update_cache: true
   become: true
   become_method: sudo
