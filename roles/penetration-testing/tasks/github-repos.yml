@@ -12,7 +12,10 @@
     - { repo: "https://github.com/danielbohannon/Invoke-Obfuscation", location: "/opt/Invoke-Obfuscation"}
     - { repo: "https://github.com/mandatoryprogrammer/xsshunter-express", location: "/opt/xsshunter" }
     - { repo: "https://github.com/Kevin-Robertson/Inveigh", location: "/opt/Inveigh" }
-    - { repo: "git clone https://github.com/phra/PEzor.git", location: "/opt/PEzor" }
+    - { repo: "https://github.com/phra/PEzor.git", location: "/opt/PEzor" }
+    - { repo: "https://github.com/NetSPI/PowerUpSQL.git", location: "/opt/NetSPI/PowerUpSQL" }
+    - { repo: "https://github.com/NetSPI/DAFT.git", location: "/opt/NetSPI/DAFT" }
+    - { repo: "https://github.com/NetSPI/ESC.git", location: "/opt/NetSPI/ESC" }
   become: true
   ignore_errors: true
   become_method: sudo
@@ -49,6 +52,9 @@
     - { repo: "trufflesecurity/trufflehog", regex: "_linux_amd64.tar.gz", location: "/opt/trufflehog" }
     - { repo: "itm4n/PrintSpoofer", regex: "PrintSpoofer32.exe", location: "/opt/PrintSpoofer" }
     - { repo: "itm4n/PrintSpoofer", regex: "PrintSpoofer64.exe", location: "/opt/PrintSpoofer" }
+    - { repo: "NetSPI/ESC", regex: "esc.exe", location: "/opt/NetSPI"}
+    - { repo: "NetSPI/ESC", regex: "esc.csproj", location: "/opt/NetSPI"}
+    - { repo: "NetSPI/ESC", regex: "esc.xml", location: "/opt/NetSPI"}
   async: 45
   poll: 0
   become: true
