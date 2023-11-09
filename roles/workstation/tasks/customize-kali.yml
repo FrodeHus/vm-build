@@ -18,6 +18,7 @@
         value: /usr/share/backgrounds/kali/kali-wallpaper-custom.png
         value_type: string
         state: present
+      ignore_errors: true
 
 - name: Install JetBrains Nerd Font
   block:
@@ -37,6 +38,7 @@
         line: "fontFamily=JetBrainsMono Nerd Font Mono"
         state: present
       become: false
+      ignore_errors: true
     - name: Set terminal font size
       lineinfile:
         path: "{{ ansible_env.HOME }}/.config/qterminal.org/qterminal.ini"
@@ -44,6 +46,7 @@
         line: "fontSize=10"
         state: present
       become: false
+      ignore_errors: true
       
   become: true
   become_method: sudo

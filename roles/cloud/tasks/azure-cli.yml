@@ -20,7 +20,7 @@
         AZ_REPO: "{% if ansible_distribution == 'kali' %}bookworm{% else %}ansible_distribution_release {% endif %}"
     - name: "Add the Microsoft azure-cli apt repository"
       apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ {{ AZ_REPO }} main"
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ bookworm main"
         state: present
     - name: "Install Azure CLI"
       apt:
