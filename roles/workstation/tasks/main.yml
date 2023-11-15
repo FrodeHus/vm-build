@@ -49,7 +49,7 @@
   when: ansible_check_mode|bool == false
 
 - ansible.builtin.import_tasks: neovim.yml
-# - ansible.builtin.import_tasks: keybase.yml
+- ansible.builtin.import_tasks: keybase.yml
 - ansible.builtin.import_tasks: 1password.yml
 - ansible.builtin.import_tasks: docker.yml
 - ansible.builtin.import_tasks: go-tools.yml

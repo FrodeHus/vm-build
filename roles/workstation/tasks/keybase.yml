@@ -11,14 +11,30 @@
       get_url:
         url: "https://prerelease.keybase.io/keybase_amd64.deb"
         dest: "/tmp/keybase_amd64.deb"
+    - name: "Copying python script to download github releases"
+      copy:
+        src: "files/install-keybase-deps.sh"
+        dest: "/tmp/install-keybase-deps.sh"
+        owner: root
+        group: root
+        mode: 0755
+      become: true
+      become_method: sudo
+    - name: "Install Keybase dependencies"
+      shell: "/tmp/install-keybase-deps.sh"
+      become: true
+      become_method: sudo
     - name: "Install Keybase"
       apt:
         deb: /tmp/keybase_amd64.deb
         state: present
     - name: "Remove downloaded Keybase"
       file:
-        path: "/tmp/keybase_amd64.deb"
+        path: "{{ item}}"
         state: absent
+      with_items:
+        - /tmp/keybase_amd64.deb
+        - /tmp/install-keybase-deps.sh
     - name: "Move Keybase apt GPG key from trusted.gpg to trusted.gpg.d"
       shell: "{{ item }}"
       args:
