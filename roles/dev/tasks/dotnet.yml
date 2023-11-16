@@ -3,6 +3,7 @@
   apt:
     name:
       - dotnet-sdk-7.0
+      - dotnet-sdk-8.0
     state: present
     update_cache: true
   become: true
