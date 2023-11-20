@@ -39,6 +39,7 @@
       alias gcm='git checkout main'
       alias gpsup='git push --set-upstream origin $(git branch --show-current)'
       alias gpristine='git reset --hard && git clean --force -dfx'
+      xrdp(){xfreerdp /u:"$2" /p:"$3" /v:"$1" +clipboard /w:1920 /h:1200 /kbd:0x00000414 /kbd-lang:0x0414: /cert-ignore}
     marker: "# {mark} ANSIBLE MANAGED BLOCK - common paths and aliases"
     insertbefore: EOF
 
