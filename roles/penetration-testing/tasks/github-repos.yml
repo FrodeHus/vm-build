@@ -16,6 +16,7 @@
     - { repo: "https://github.com/NetSPI/PowerUpSQL.git", location: "/opt/NetSPI/PowerUpSQL" }
     - { repo: "https://github.com/NetSPI/DAFT.git", location: "/opt/NetSPI/DAFT" }
     - { repo: "https://github.com/NetSPI/ESC.git", location: "/opt/NetSPI/ESC" }
+    - { repo: "https://github.com/dirkjanm/krbrelayx.git", location: "/opt/krbrelayx" }
   become: true
   ignore_errors: true
   become_method: sudo
